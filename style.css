@@ -1,1 +1,160 @@
-/* Add your CSS here */
+/* General body styling */
+body {
+  font-family: Arial, sans-serif; /* Use a clean, readable font */
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5; /* Light gray background */
+  color: #333; /* Dark gray text for readability */
+}
+
+/* Header styling */
+header {
+  background: linear-gradient(to bottom, #004aad, #0078d7); /* Blue gradient */
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+header img {
+  max-width: 150px; /* Limit logo size */
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2.5rem; /* Large heading */
+  margin: 10px 0;
+}
+
+header p {
+  font-size: 1rem; /* Smaller subheading text */
+  margin: 10px 0;
+}
+
+/* Section styling for horizontal scrolling with scroll snap */
+section {
+  display: flex; /* Arrange cards in a row */
+  flex-wrap: nowrap; /* Prevent wrapping to the next line */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+  scroll-behavior: smooth; /* Smooth scrolling effect */
+  scroll-snap-type: x mandatory; /* Enable horizontal scroll snapping */
+  max-width: calc(250px * 4 + 60px); /* Show 4 cards fully (4 cards + 3 gaps) */
+  margin: 0 auto; /* Center the section horizontally */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Scrollbar styling */
+section::-webkit-scrollbar {
+  height: 10px; /* Height of the horizontal scrollbar */
+}
+
+section::-webkit-scrollbar-thumb {
+  background-color: #004aad; /* Blue scrollbar thumb */
+  border-radius: 5px; /* Rounded scrollbar thumb */
+}
+
+section::-webkit-scrollbar-track {
+  background-color: #f5f5f5; /* Light gray scrollbar track */
+}
+
+/* Card container styling for hover effect */
+section div {
+  position: relative; /* Set position for overlay positioning */
+  flex: 0 0 250px; /* Ensure each card has a fixed width of 250px */
+  scroll-snap-align: start; /* Snap to the start of each card */
+  background-color: white;
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 15px;
+  text-align: center;
+  overflow: hidden; /* Ensure content stays within the card */
+  word-wrap: break-word; /* Break long words to fit within the card */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Image styling inside cards */
+section div img {
+  width: 100%; /* Ensure the image takes the full width of the card */
+  height: 250px; /* Set a fixed height to make the image square */
+  object-fit: cover; /* Crop the image to fit within the square */
+  object-position: center; /* Center the cropped image */
+  border-radius: 4px; /* Slightly rounded corners */
+  margin-bottom: 10px;
+}
+
+/* Hide the p tag text by default */
+section div p {
+  display: none; /* Hide the text initially */
+  font-size: 0.9rem; /* Smaller text for descriptions */
+  color: #555; /* Slightly lighter gray */
+  word-wrap: break-word; /* Ensure long words break properly */
+  white-space: normal; /* Allow text to wrap */
+  margin: 0; /* Remove default margins */
+}
+
+/* Overlay styling */
+section div::after {
+  content: ''; /* Empty content for the overlay */
+  position: absolute;
+  top: 0;
+  left: 100%; /* Start the overlay off-screen to the right */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 74, 173, 0.7); /* Semi-transparent blue */
+  transition: left 0.3s ease; /* Smooth transition for sliding effect */
+  z-index: 1; /* Place the overlay above the card content */
+}
+
+/* Show overlay by sliding it in from the right on hover */
+section div:hover::after {
+  left: 0; /* Slide the overlay to cover the card */
+}
+
+section div:hover p {
+  display: block; /* Show the p tag text */
+  position: absolute;
+  top: 50%; /* Center the text vertically */
+  left: 50%; /* Center the text horizontally */
+  transform: translate(-50%, -50%); /* Adjust for centering */
+  color: white; /* White text for contrast */
+  z-index: 2; /* Place the text above the overlay */
+  margin: 0; /* Remove default margins */
+  padding: 20px; /* Add padding for better readability */
+  text-align: center; /* Center the text */
+  background: none; /* No background for the text */
+  font-size: 1.2rem; /* Make the text larger */
+  line-height: 1.5; /* Increase line spacing for better readability */
+  width: 80%; /* Spread the text across 80% of the overlay */
+}
+
+/* Add neon shadow effect on hover */
+section div:hover {
+  box-shadow: 0 0 15px 5px rgba(0, 74, 173, 0.8); /* Blue neon shadow */
+  transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+}
+
+/* Footer text */
+body > p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777; /* Light gray text */
+  margin: 20px 0;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  section {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    max-width: 100%; /* Allow full width for the section */
+    overflow-x: hidden; /* Disable horizontal scrolling */
+  }
+
+  section div {
+    flex: 0 0 auto; /* Allow cards to take full width */
+    width: 70%; /* Cards take 70% of the container width */
+    margin: 0 auto 20px; /* Center the cards and add spacing between them */
+  }
+}
